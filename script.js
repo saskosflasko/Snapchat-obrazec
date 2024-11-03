@@ -1,44 +1,38 @@
-document.getElementById('toggle-login').addEventListener('click', function(e) {
+function allowOnlyNumbers(event) {
+    event.target.value = event.target.value.replace(/[^0-9]/g, '');
+}
+
+document.getElementById('toggle-login').addEventListener('click', function (e) {
     e.preventDefault();
     const loginInput = document.getElementById('login-input');
     const toggleLink = document.getElementById('toggle-login');
     const countryCode = document.getElementById('country-code');
-    
-   
-    loginInput.value = "";//pocisti vsebino inputa
 
 
-if (loginInput.placeholder === "Username") {
-    loginInput.placeholder = "Phone number";
-    loginInput.type = "tel";
-    toggleLink.textContent = "Use Username instead";
-    countryCode.style.display = "inline-block";
+    loginInput.value = "";//pocisti input
 
-    
-    loginInput.addEventListener('input', function() {
-        loginInput.value = loginInput.value.replace(/[^0-9]/g, '');
-    });
-
-} else {
-    loginInput.placeholder = "Username";
-    loginInput.type = "text";
-    toggleLink.textContent = "Use phone number instead";
-    countryCode.style.display = "none"; 
+    if (loginInput.placeholder === "Username") {
+        loginInput.placeholder = "Phone number";
+        loginInput.type = "tel";
+        toggleLink.textContent = "Use Username instead";
+        countryCode.style.display = "inline-block";
 
 
-    loginInput.removeEventListener('input', function() {
-        loginInput.value = loginInput.value.replace(/[^0-9]/g, '');
-    });
-}
+        loginInput.addEventListener('input', allowOnlyNumbers);
+    } else {
+        loginInput.placeholder = "Username";
+        loginInput.type = "text";
+        toggleLink.textContent = "Use phone number instead";
+        countryCode.style.display = "none";
 
 
+        loginInput.removeEventListener('input', allowOnlyNumbers);
+    }
 });
-
 
 document.getElementById('country-code').style.display = "none";
 
-
-document.getElementById('login-form').addEventListener('submit', function(e) {
+document.getElementById('login-form').addEventListener('submit', function (e) {
     e.preventDefault();
     window.location.href = 'geslo.html';
 });
@@ -47,3 +41,9 @@ function saveUsername() {
     const username = document.getElementById("login-input").value;
     localStorage.setItem("username", username);
 }
+
+document.getElementById('login-input').addEventListener('input', function (e) {
+    if (e.target.value.length > 20) {
+        e.target.value = e.target.value.slice(0, 20);
+    }
+});
