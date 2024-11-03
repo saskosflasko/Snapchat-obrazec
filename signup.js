@@ -8,7 +8,6 @@ const passwordError = document.getElementById('password-error');
 passwordInput.addEventListener('input', function () {
     const password = passwordInput.value;
 
-    // Check password requirements
     lengthCheck.checked = password.length >= 8;
     uppercaseCheck.checked = /[A-Z]/.test(password);
     lowercaseCheck.checked = /[a-z]/.test(password);
@@ -16,7 +15,6 @@ passwordInput.addEventListener('input', function () {
 });
 
 function validatePassword() {
-    // Validate all password requirements
     if (lengthCheck.checked && uppercaseCheck.checked && lowercaseCheck.checked && numberCheck.checked) {
         passwordError.style.display = 'none';
         return true;
