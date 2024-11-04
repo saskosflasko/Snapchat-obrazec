@@ -6,63 +6,63 @@ const numberCheck = document.getElementById('number-check');
 const passwordError = document.getElementById('password-error');
 
 passwordInput.addEventListener('input', function () {
-    const password = passwordInput.value;
+  const password = passwordInput.value;
 
-    lengthCheck.checked = password.length >= 8;
-    uppercaseCheck.checked = /[A-Z]/.test(password);
-    lowercaseCheck.checked = /[a-z]/.test(password);
-    numberCheck.checked = /[0-9]/.test(password);
+  lengthCheck.checked = password.length >= 8;
+  uppercaseCheck.checked = /[A-Z]/.test(password);
+  lowercaseCheck.checked = /[a-z]/.test(password);
+  numberCheck.checked = /[0-9]/.test(password);
 });
 
 function validatePassword() {
-    if (lengthCheck.checked && uppercaseCheck.checked && lowercaseCheck.checked && numberCheck.checked) {
-        passwordError.style.display = 'none';
-        return true;
-    } else {
-        passwordError.style.display = 'block';
-        return false;
-    }
+  if (lengthCheck.checked && uppercaseCheck.checked && lowercaseCheck.checked && numberCheck.checked) {
+    passwordError.style.display = 'none';
+    return true;
+  } else {
+    passwordError.style.display = 'block';
+    return false;
+  }
 }
 
 IMask(
-    document.getElementById('year'),
-    {
-      mask: '0000'
-    }
-  )
+  document.getElementById('year'),
+  {
+    mask: '0000'
+  }
+)
 
-  IMask(
-    document.getElementById('day'),
-    {
-      mask: Number,
-      min: 1,
-      max: 31,
-    }
-  )
-  IMask(
-    document.getElementById('year'),
-    {
-      mask: Number,
-      min: 1900,
-      max: 2024,
-    }
-  )
+IMask(
+  document.getElementById('day'),
+  {
+    mask: Number,
+    min: 1,
+    max: 31,
+  }
+)
+IMask(
+  document.getElementById('year'),
+  {
+    mask: Number,
+    min: 1900,
+    max: 2024,
+  }
+)
 
 
-  document.getElementById("signup-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the form from submitting normally
+document.getElementById("signup-form").addEventListener("submit", function (event) {
+  event.preventDefault();
 
-    if (validatePassword()) { // Validate password criteria
-        Swal.fire({
-            title: 'Registration Successful!',
-            text: 'You have successfully signed up.',
-            icon: 'success',
-            confirmButtonText: 'OK',
-            didOpen: () => {
-                document.body.classList.remove('swal2-height-auto'); // Fix height issue
-            }
-        }).then(() => {
-            window.location.href = "index.html"; // Redirect to login page after closing SweetAlert
-        });
-    }
+  if (validatePassword()) {
+    Swal.fire({
+      title: 'Registration Successful!',
+      text: 'You have successfully signed up.',
+      icon: 'success',
+      confirmButtonText: 'OK',
+      didOpen: () => {
+        document.body.classList.remove('swal2-height-auto');
+      }
+    }).then(() => {
+      window.location.href = "index.html";
+    });
+  }
 });
