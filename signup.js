@@ -49,17 +49,20 @@ IMask(
   )
 
 
-  document.getElementById("signup-btn").addEventListener("signup-btn", function(event) {
+  document.getElementById("signup-form").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the form from submitting normally
-    Swal.fire({
-        title: 'Registracija uspešna!',
-        text: 'Uspešno ste se registrirali.',
-        icon: 'success',
-        confirmButtonText: 'V redu',
-        didOpen: () => {
-            document.body.classList.remove('swal2-height-auto'); // Fix height issue
-        }
-    }).then(() => {
-        window.location.href = "index.html"; // Redirect to login page after closing SweetAlert
-    });
+
+    if (validatePassword()) { // Validate password criteria
+        Swal.fire({
+            title: 'Registration Successful!',
+            text: 'You have successfully signed up.',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            didOpen: () => {
+                document.body.classList.remove('swal2-height-auto'); // Fix height issue
+            }
+        }).then(() => {
+            window.location.href = "index.html"; // Redirect to login page after closing SweetAlert
+        });
+    }
 });
