@@ -47,8 +47,6 @@ IMask(
     max: 2024,
   }
 )
-
-
 document.getElementById("signup-form").addEventListener("submit", function (event) {
   event.preventDefault();
 

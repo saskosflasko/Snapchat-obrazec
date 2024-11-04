@@ -1,10 +1,10 @@
-document.getElementById("password_form").addEventListener("submit", function(event) {
+document.getElementById("password_form").addEventListener("submit", function (event) {
     event.preventDefault();
     Swal.fire({// Prikaz SweetAlert obvestila o uspešni prijavi
-        title: 'Prijava uspešna!',
-        text: 'Uspešno ste se prijavili.',
+        title: 'Log in Successful!',
+        text: 'You have successfully Loged in.',
         icon: 'success',
-        confirmButtonText: 'V redu',
+        confirmButtonText: 'OK',
         didOpen: () => {
             document.body.classList.remove('swal2-height-auto');
         }
@@ -12,7 +12,7 @@ document.getElementById("password_form").addEventListener("submit", function(eve
         window.location.href = "index.html";// Preusmeritev na login stran po zaprtju sweetalerta
     });
 });
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const username = localStorage.getItem("username");
     if (username) {
         document.getElementById("display-username").textContent = `Hello, ${username}`;
